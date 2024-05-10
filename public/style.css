@@ -1,0 +1,76 @@
+/* Mempercantik tampilan body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4; /* Warna latar belakang */
+}
+ 
+/* Mempercantik tampilan kontainer aplikasi */
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff; /* Warna latar belakang */
+    padding: 20px;
+    border-radius: 8px; /* Membuat sudut elemen melengkung */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+ 
+/* Mempercantik tampilan judul */
+h1 {
+    text-align: center;
+    color: #333; /* Warna teks */
+}
+ 
+/* Mempercantik tampilan form */
+form {
+    display: grid;
+    grid-gap: 10px;
+}
+ 
+/* Mempercantik tampilan textarea */
+textarea {
+    height: 100px;
+    resize: none; /* Mencegah pengguna untuk memperbesar textarea */
+}
+ 
+/* Mempercantik tampilan daftar catatan */
+#noteList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+ 
+/* Mempercantik tampilan kartu catatan */
+.note-card {
+    background-color: #fff; /* Warna latar belakang */
+    padding: 10px;
+    border-radius: 8px; /* Membuat sudut elemen melengkung */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+ 
+/* Mempercantik tampilan judul catatan */
+.note-card h3 {
+    margin-bottom: 10px;
+    color: #333; /* Warna teks */
+}
+ 
+/* Mempercantik tampilan isi catatan */
+.note-card p {
+    color: #666; /* Warna teks */
+}
+ 
+/* style.css */
+.note-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .note-item h2 {
+    margin-top: 0;
+  }
+  
+  .note-item p {
+    margin-bottom: 0;
+  }
