@@ -138,39 +138,51 @@
           ];
  
            // Fungsi untuk menampilkan catatan
-        function displayNotes() {
-            const noteList = document.getElementById('noteList');
-            // Bersihkan konten sebelum menambahkan catatan
-            noteList.innerHTML = '';
- 
-            // Loop melalui setiap catatan dalam array notesData
-            notesData.forEach(note => {
-                // Buat elemen div untuk setiap catatan
-                const noteItem = document.createElement('div');
-                noteItem.classList.add('note-item'); // Tambahkan kelas 'note-item'
- 
-                // Isi elemen div dengan judul dan isi catatan
-                noteItem.innerHTML = `
-                    <h3>${note.title}</h3>
-                    <p>${note.body}</p>
-                    <button class="delete-button" data-id="${note.id}">Delete</button>
-                `;
- 
-                // Tambahkan elemen catatan ke dalam daftar catatan
-                noteList.appendChild(noteItem);
-            });
- 
-            // Tambahkan event listener untuk tombol hapus di setiap catatan
-            const deleteButtons = document.querySelectorAll('.delete-button');
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const noteId = button.getAttribute('data-id');
-                    // Panggil fungsi untuk menghapus catatan berdasarkan ID
-                    deleteNoteById(noteId);
-                });
-            });
+async function displayNotes() {
+    const noteList = document.getElementById('noteList');
+    // Bersihkan konten sebelum menambahkan catatan
+    noteList.innerHTML = '';
+
+    try {
+        // Permintaan untuk mendapatkan catatan dari API
+        const response = await fetch('https://notes-api.dicoding.dev/v2/notes');
+        if (!response.ok) {
+            throw new Error('Failed to fetch notes from the API');
         }
- 
+        const notesData = await response.json();
+
+        // Loop melalui setiap catatan dalam array notesData
+        notesData.forEach(note => {
+            // Buat elemen div untuk setiap catatan
+            const noteItem = document.createElement('div');
+            noteItem.classList.add('note-item'); // Tambahkan kelas 'note-item'
+
+            // Isi elemen div dengan judul dan isi catatan
+            noteItem.innerHTML = `
+                <h3>${note.title}</h3>
+                <p>${note.body}</p>
+                <button class="delete-button" data-id="${note.id}">Delete</button>
+            `;
+
+            // Tambahkan elemen catatan ke dalam daftar catatan
+            noteList.appendChild(noteItem);
+        });
+
+        // Tambahkan event listener untuk tombol hapus di setiap catatan
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const noteId = button.getAttribute('data-id');
+                // Panggil fungsi untuk menghapus catatan berdasarkan ID
+                deleteNoteById(noteId);
+            });
+        });
+    } catch (error) {
+        console.error('Error:', error.message);
+        // Tampilkan pesan kesalahan kepada pengguna
+        alert('Failed to fetch notes from the API');
+    }
+}
         // Fungsi untuk menghapus catatan berdasarkan ID
         function deleteNoteById(id) {
             // Cari indeks catatan dengan ID yang sesuai di dalam array notesData
